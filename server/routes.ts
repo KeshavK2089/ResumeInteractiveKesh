@@ -5,6 +5,18 @@ import path from "path";
 import { contactFormSchema } from "@shared/schema";
 import { getUncachableResendClient } from "./resend-client";
 
+// Escape HTML to prevent injection in emails
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (char) => map[char]);
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Serve PDFs with aggressive caching to reduce bandwidth costs
   // Cache for 1 year since resume/research PDFs rarely change
@@ -37,21 +49,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
       try {
         const { client, fromEmail } = await getUncachableResendClient();
         
+        // Escape all user input to prevent HTML injection
+        const safeName = escapeHtml(validatedData.name);
+        const safeEmail = escapeHtml(validatedData.email);
+        const safeMessage = escapeHtml(validatedData.message).replace(/\n/g, '<br>');
+        
         await client.emails.send({
           from: fromEmail,
           to: 'Keshavkotteswaran@gmail.com',
-          subject: `New Contact Form Message from ${validatedData.name}`,
+          replyTo: validatedData.email,
+          subject: `New Contact Form Message from ${safeName}`,
           html: `
             <h2>New Contact Form Submission</h2>
-            <p><strong>From:</strong> ${validatedData.name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></p>
+            <p><strong>From:</strong> ${safeName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
             <p><strong>Time:</strong> ${new Date(timestamp).toLocaleString()}</p>
             <hr>
             <h3>Message:</h3>
-            <p>${validatedData.message.replace(/\n/g, '<br>')}</p>
+            <p>${safeMessage}</p>
             <hr>
             <p style="color: #666; font-size: 12px;">
-              Reply directly to ${validatedData.email} to respond to this message.
+              You can reply directly to this email to respond to ${safeName}.
             </p>
           `
         });
