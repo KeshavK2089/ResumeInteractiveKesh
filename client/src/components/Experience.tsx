@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
-import { ChevronDown, ChevronUp, Briefcase } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import epicLogo from '@assets/stock_images/epic_systems_logo_919561d7.jpg';
+import insuletLogo from '@assets/stock_images/insulet_corporation__6bf1326f.jpg';
+import acordaLogo from '@assets/stock_images/acorda_therapeutics__252e6aef.jpg';
+import cscLogo from '@assets/stock_images/csc_corporation_serv_644898ce.jpg';
 
 interface ExperienceItem {
   id: string;
@@ -11,6 +15,7 @@ interface ExperienceItem {
   period: string;
   highlights: string[];
   allResponsibilities: string[];
+  logo: string;
 }
 
 const experiences: ExperienceItem[] = [
@@ -20,6 +25,7 @@ const experiences: ExperienceItem[] = [
     role: 'Project Manager',
     location: 'Madison, WI',
     period: 'September 2024 - August 2025',
+    logo: epicLogo,
     highlights: [
       'Managed 18 IT analysts across four teams to support Beebe Healthcare\'s EHR implementation',
       'Guided 26 clinical leaders through 300+ workflow optimization decisions',
@@ -40,6 +46,7 @@ const experiences: ExperienceItem[] = [
     role: 'Systems Engineering Design Verification Co-op',
     location: 'Acton, MA',
     period: 'July 2023 - December 2023',
+    logo: insuletLogo,
     highlights: [
       'Executed QA tests for 50+ Omnipod performance specifications, ensuring FDA compliance',
       'Led end-to-end systems integration testing for device-to-cloud protocols',
@@ -58,6 +65,7 @@ const experiences: ExperienceItem[] = [
     role: 'Analytical Development Co-op',
     location: 'Waltham, MA',
     period: 'July 2022 - December 2022',
+    logo: acordaLogo,
     highlights: [
       'Conducted market validation studies on powder stability for pharmaceutical launch',
       'Assessed biocompatibility of spray-dried drug formulations',
@@ -76,6 +84,7 @@ const experiences: ExperienceItem[] = [
     role: 'DBS Intern',
     location: 'Wilmington, DE',
     period: 'June 2020 - September 2020',
+    logo: cscLogo,
     highlights: [
       'Created clean reference database of international ticker suffixes',
       'Wrote AWS Lambda job for CSV validation and ingestion to S3',
@@ -117,9 +126,14 @@ export function Experience() {
               }}
               data-testid={`card-experience-${exp.id}`}
             >
-              <div className="flex flex-col md:flex-row md:items-start gap-4">
-                <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 flex-shrink-0">
-                  <Briefcase className="text-primary" size={24} />
+              <div className="flex flex-col md:flex-row md:items-start gap-6">
+                <div className="flex items-center justify-center md:w-24 md:h-24 w-20 h-20 flex-shrink-0 bg-white dark:bg-muted rounded-md p-2 border border-border">
+                  <img
+                    src={exp.logo}
+                    alt={`${exp.company} logo`}
+                    className="w-full h-full object-contain"
+                    data-testid={`img-logo-${exp.id}`}
+                  />
                 </div>
 
                 <div className="flex-1">
