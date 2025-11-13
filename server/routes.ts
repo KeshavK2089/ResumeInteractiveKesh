@@ -1,13 +1,34 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import express from "express";
+import path from "path";
+import { contactFormSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // put application routes here
-  // prefix all routes with /api
+  app.use('/attached_assets', express.static(path.join(process.cwd(), 'attached_assets')));
 
-  // use storage to perform CRUD operations on the storage interface
-  // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const validatedData = contactFormSchema.parse(req.body);
+      
+      console.log("Contact form submission:", {
+        name: validatedData.name,
+        email: validatedData.email,
+        message: validatedData.message,
+        timestamp: new Date().toISOString()
+      });
+
+      res.json({ 
+        success: true, 
+        message: "Message received successfully" 
+      });
+    } catch (error) {
+      res.status(400).json({ 
+        success: false, 
+        error: "Invalid form data" 
+      });
+    }
+  });
 
   const httpServer = createServer(app);
 
