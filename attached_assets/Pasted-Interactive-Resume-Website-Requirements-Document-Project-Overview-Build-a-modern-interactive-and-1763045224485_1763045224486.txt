@@ -1,0 +1,170 @@
+Interactive Resume Website - Requirements Document
+Project Overview
+Build a modern, interactive, and engaging personal website to showcase professional experience, with integrated PDF viewing capabilities for a resume and research paper.
+
+Core Objectives
+Create a visually appealing and professional online presence
+Display personal information and experiences in an engaging format
+Enable seamless viewing of PDF documents (resume and research paper)
+Ensure excellent user experience with smooth interactions and animations
+Make the site memorable and distinctive
+Functional Requirements
+1. Home/Landing Page
+Eye-catching hero section with name and professional tagline
+Brief introduction or elevator pitch
+Call-to-action buttons (e.g., "View Resume", "Read Research", "Contact Me")
+Smooth scroll navigation to different sections
+Modern design with subtle animations on load
+2. Experience/About Section
+Professional summary
+Work experience timeline with interactive elements
+Skills visualization (progress bars, skill clouds, or interactive charts)
+Education background
+Achievements and notable accomplishments
+Hover effects and smooth transitions between items
+3. PDF Document Viewer
+Resume PDF Display
+Embedded PDF viewer with zoom and page navigation controls
+Download option for the resume
+Responsive display that works on mobile devices
+Research Paper PDF Display
+Embedded PDF viewer with full navigation capabilities
+Download option for the research paper
+Citation information clearly displayed
+Abstract or summary visible before opening full document
+4. Interactive Elements (Choose 3-5)
+Animated skill progress bars that fill on scroll
+Interactive timeline with expandable work experience cards
+Particle effects or dynamic background
+Smooth parallax scrolling effects
+Interactive project cards with flip or hover animations
+Animated statistics counter (years of experience, projects completed, etc.)
+Dynamic color theme switcher (light/dark mode)
+5. Contact Section
+Contact form with name, email, and message fields
+Social media links (LinkedIn, GitHub, etc.)
+Email address with copy-to-clipboard functionality
+Professional headshot or avatar
+6. Navigation
+Fixed/sticky navigation bar that follows scroll
+Smooth scroll to section functionality
+Mobile-responsive hamburger menu
+Active section highlighting in navigation
+Technical Requirements
+Technology Stack
+Frontend Framework: React or vanilla HTML/CSS/JavaScript
+Styling: Modern CSS with animations (CSS Grid, Flexbox, transitions)
+PDF Handling: PDF.js, React-PDF, or similar library for rendering PDFs
+Responsive Design: Mobile-first approach, breakpoints for tablet and desktop
+Performance: Optimized loading, lazy loading for images and PDFs
+Browser Support
+Chrome, Firefox, Safari, Edge (latest 2 versions)
+Mobile browsers (iOS Safari, Chrome Mobile)
+Performance Standards
+Initial page load under 3 seconds
+Smooth 60fps animations
+PDFs should load within 2 seconds
+Responsive on all device sizes
+Design Requirements
+Visual Style
+Modern and Professional: Clean, contemporary design
+Color Scheme: Choose a sophisticated palette (2-3 primary colors + neutrals)
+Typography: Professional fonts with clear hierarchy (headings, body, captions)
+White Space: Generous use of white space for readability
+Visual Hierarchy: Clear distinction between sections
+Interactive Design Principles
+Micro-interactions on buttons and links
+Smooth transitions between states (hover, active, focus)
+Loading animations or skeleton screens
+Visual feedback for all user actions
+Accessibility considerations (ARIA labels, keyboard navigation)
+Animation Guidelines
+Subtle entrance animations (fade in, slide in)
+Smooth scroll behavior
+Hover effects that enhance without distracting
+Page transitions that feel fluid
+Loading states that engage users
+Content Requirements
+Required Content Sections
+Hero Section: Name, title, brief tagline
+About/Summary: 2-3 paragraph professional summary
+Experience: At least 3-5 work experiences or projects
+Skills: Technical and soft skills categorized
+Education: Degrees, certifications, relevant coursework
+Documents: Resume PDF and Research Paper PDF
+Contact: Email, social links, contact form
+PDF Documents
+Resume: Standard 1-2 page professional resume
+Research Paper: Academic or professional research publication
+Both PDFs should be optimized for web viewing (compressed but readable)
+User Experience Requirements
+Navigation Flow
+User lands on engaging hero section
+Can scroll naturally through sections OR use navigation menu
+Easy access to PDF documents from multiple points
+Clear call-to-action buttons throughout
+Intuitive return to top functionality
+Mobile Experience
+Touch-friendly interface (buttons, links appropriately sized)
+Hamburger menu for navigation
+PDF viewer optimized for mobile (pinch to zoom)
+Readable text without horizontal scrolling
+Optimized images for faster mobile loading
+Accessibility
+Semantic HTML structure
+Alt text for all images
+Keyboard navigable
+Sufficient color contrast ratios (WCAG AA minimum)
+Screen reader friendly
+Deliverables
+Code Deliverables
+Complete website codebase
+All HTML, CSS, JavaScript files organized
+PDF files included or instructions for upload
+README with setup instructions
+Comments in code for maintainability
+Documentation
+Brief user guide for updating content
+Instructions for replacing PDF files
+Deployment instructions
+Testing Checklist
+ All links work correctly
+ PDFs load and display properly
+ Responsive on mobile, tablet, desktop
+ Animations run smoothly
+ Form submission works (if applicable)
+ Cross-browser testing completed
+ Loading performance meets standards
+ Accessibility check passed
+Optional Enhancements (Nice-to-Have)
+Blog section for articles
+Project portfolio gallery
+Testimonials or recommendations section
+Analytics integration (Google Analytics)
+SEO optimization (meta tags, structured data)
+Progressive Web App (PWA) capabilities
+Dark mode toggle
+Multi-language support
+Interactive resume builder feature
+3D effects or WebGL animations
+Success Criteria
+Website is visually engaging and stands out
+All sections are clearly organized and easy to navigate
+PDFs are easily accessible and readable
+Site loads quickly and performs smoothly
+Works seamlessly on all device sizes
+Creates a memorable impression on visitors
+Professional appearance that enhances personal brand
+Timeline Expectations
+Phase 1: Basic structure and layout (20% of time)
+Phase 2: Content integration and PDF embedding (30% of time)
+Phase 3: Interactive elements and animations (30% of time)
+Phase 4: Testing, refinement, and polish (20% of time)
+Notes for AI Agent
+Prioritize user experience and engagement over complexity
+Ensure code is clean, well-commented, and maintainable
+Test PDF viewing thoroughly across devices
+Balance visual appeal with loading performance
+Make the site feel modern and cutting-edge
+Include placeholder content if specific details aren't provided
+Provide instructions for easy content updates
