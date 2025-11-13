@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import express from "express";
 import path from "path";
 import { contactFormSchema } from "@shared/schema";
-import { getUncachableResendClient } from "./resend-client";
+import { getResendClient } from "./resend-client";
 
 // Escape HTML to prevent injection in emails
 function escapeHtml(text: string): string {
@@ -47,7 +47,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Send email notification
       try {
-        const { client, fromEmail } = await getUncachableResendClient();
+        const { client, fromEmail } = getResendClient();
         
         // Escape all user input to prevent HTML injection
         const safeName = escapeHtml(validatedData.name);
