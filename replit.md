@@ -44,10 +44,10 @@ client/src/
 ### Key Features
 1. **Responsive Navigation**: Sticky header with active section highlighting, mobile hamburger menu
 2. **Hero Section**: Professional introduction with smooth scroll CTAs
-3. **Experience Timeline**: 4 positions (Epic Systems, Insulet, Acorda, CSC) with expandable details
+3. **Experience Timeline**: 4 positions (Epic Systems, Insulet, Acorda, CSC) with company logos and expandable details
 4. **Skills Visualization**: 
    - Technical tools as monospace badges
-   - Healthcare expertise with animated progress bars (fill on scroll)
+   - Healthcare expertise as clean badges (progress bars removed for simplicity)
 5. **Education Cards**: MS and BS degrees with GPA metrics
 6. **Projects Showcase**: Capstone research and Cornerstone engineering project
 7. **PDF Viewers**: Embedded viewers with zoom, page navigation, and download for:
@@ -78,6 +78,8 @@ client/src/
 - Added React-PDF integration for document viewing
 - Removed contact form to minimize costs - now displays contact info only
 - Added 1-year caching for PDFs to reduce bandwidth costs
+- 2024-11-13: Simplified Skills section by removing progress bars - now displays as clean badges
+- 2024-11-13: Added company logos to Experience timeline for enhanced visual appeal
 
 ## Development Notes
 - Follow design_guidelines.md for all UI implementations
