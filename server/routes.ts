@@ -5,7 +5,18 @@ import path from "path";
 import { contactFormSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  app.use('/attached_assets', express.static(path.join(process.cwd(), 'attached_assets')));
+  // Serve PDFs with aggressive caching to reduce bandwidth costs
+  // Cache for 1 year since resume/research PDFs rarely change
+  app.use('/attached_assets', express.static(path.join(process.cwd(), 'attached_assets'), {
+    maxAge: '31536000000', // 1 year in milliseconds
+    immutable: true,
+    setHeaders: (res, filePath) => {
+      // Only cache PDFs aggressively, not other files
+      if (filePath.endsWith('.pdf')) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+    }
+  }));
 
   app.post("/api/contact", async (req, res) => {
     try {
