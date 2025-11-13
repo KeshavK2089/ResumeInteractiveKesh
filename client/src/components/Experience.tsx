@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import epicLogo from '@assets/stock_images/epic_systems_logo_919561d7.jpg';
-import insuletLogo from '@assets/stock_images/insulet_corporation__6bf1326f.jpg';
+import epicLogo from '@assets/stock_images/epic_systems_ehr_hos_e9dba9e1.jpg';
+import insuletLogo from '@assets/stock_images/omnipod_insulin_pump_a5291a49.jpg';
 import acordaLogo from '@assets/stock_images/acorda_therapeutics__252e6aef.jpg';
 import cscLogo from '@assets/stock_images/csc_corporation_serv_644898ce.jpg';
 
