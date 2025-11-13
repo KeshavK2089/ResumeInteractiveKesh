@@ -8,7 +8,7 @@ Create a visually stunning online presence with:
 - Professional experience timeline
 - Interactive skills visualization
 - Embedded PDF viewers for resume and research paper
-- Contact form for professional inquiries
+- Contact information display with copy-to-clipboard
 - Smooth animations and responsive design
 
 ## Tech Stack
@@ -34,7 +34,7 @@ client/src/
 │   ├── Education.tsx      # Degree cards with GPAs
 │   ├── Projects.tsx       # Research project showcase
 │   ├── Research.tsx       # PDF viewers for resume & paper
-│   └── Contact.tsx        # Contact form & info
+│   └── Contact.tsx        # Contact information display
 ├── pages/
 │   ├── home.tsx          # Main landing page
 │   └── not-found.tsx     # 404 page
@@ -53,7 +53,7 @@ client/src/
 7. **PDF Viewers**: Embedded viewers with zoom, page navigation, and download for:
    - Professional resume
    - Research paper on NIH 3T3 cell migration
-8. **Contact Section**: Form submission and contact information with copy-to-clipboard
+8. **Contact Section**: Contact information (email, phone, LinkedIn) with copy-to-clipboard functionality
 
 ### Design System
 - **Color Palette**: Professional bioengineering theme
@@ -76,6 +76,8 @@ client/src/
 - Configured bioengineering color palette (blues/teals)
 - Implemented all sections with exceptional attention to visual quality
 - Added React-PDF integration for document viewing
+- Removed contact form to minimize costs - now displays contact info only
+- Added 1-year caching for PDFs to reduce bandwidth costs
 
 ## Development Notes
 - Follow design_guidelines.md for all UI implementations
