@@ -115,7 +115,7 @@ function ExperienceCard({ exp, index }: { exp: ExperienceItem; index: number }) 
       }}
     >
       <Card
-        className="p-6 md:p-8 hover:shadow-2xl transition-all duration-500 hover-elevate card-3d group"
+        className="p-6 md:p-8 overflow-visible hover:shadow-2xl transition-all duration-500 hover-elevate card-3d group"
         data-testid={`card-experience-${exp.id}`}
       >
         <div className="flex flex-col md:flex-row md:items-start gap-6">
