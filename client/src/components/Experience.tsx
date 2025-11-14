@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import epicLogo from '@assets/stock_images/epic_systems_ehr_hos_e9dba9e1.jpg';
 import insuletLogo from '@assets/stock_images/omnipod_insulin_pump_a5291a49.jpg';
 import acordaLogo from '@assets/stock_images/acorda_therapeutics__252e6aef.jpg';
@@ -97,18 +98,108 @@ const experiences: ExperienceItem[] = [
   }
 ];
 
-export function Experience() {
+function ExperienceCard({ exp, index }: { exp: ExperienceItem; index: number }) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const { ref, isVisible } = useScrollAnimation(0.2);
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
   };
 
   return (
-    <section id="experience" className="py-20 md:py-32 px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+    <div
+      ref={ref}
+      className={`scroll-reveal ${isVisible ? 'active' : ''}`}
+      style={{
+        transitionDelay: `${index * 150}ms`
+      }}
+    >
+      <Card
+        className="p-6 md:p-8 hover:shadow-2xl transition-all duration-500 hover-elevate card-3d group"
+        data-testid={`card-experience-${exp.id}`}
+      >
+        <div className="flex flex-col md:flex-row md:items-start gap-6">
+          <div className="flex items-center justify-center md:w-24 md:h-24 w-20 h-20 flex-shrink-0 bg-white dark:bg-muted rounded-md p-2 border border-border group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+            <img
+              src={exp.logo}
+              alt={`${exp.company} logo`}
+              className="w-full h-full object-contain"
+              data-testid={`img-logo-${exp.id}`}
+            />
+          </div>
+
+          <div className="flex-1">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground">
+                  {exp.role}
+                </h3>
+                <p className="text-lg font-semibold text-primary">
+                  {exp.company}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {exp.location} • {exp.period}
+                </p>
+              </div>
+            </div>
+
+            <ul className="space-y-2 mb-4">
+              {(expandedId === exp.id ? exp.allResponsibilities : exp.highlights).map(
+                (item, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-3 text-foreground"
+                    data-testid={`text-responsibility-${exp.id}-${i}`}
+                  >
+                    <span className="text-accent font-bold mt-1">•</span>
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                )
+              )}
+            </ul>
+
+            {exp.allResponsibilities.length > exp.highlights.length && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => toggleExpand(exp.id)}
+                className="gap-2"
+                data-testid={`button-expand-${exp.id}`}
+              >
+                {expandedId === exp.id ? (
+                  <>
+                    <ChevronUp size={16} />
+                    Show Less
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown size={16} />
+                    Read More
+                  </>
+                )}
+              </Button>
+            )}
+          </div>
+        </div>
+      </Card>
+    </div>
+  );
+}
+
+export function Experience() {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation(0.3);
+
+  return (
+    <section id="experience" className="py-20 md:py-32 px-6 bg-background relative overflow-hidden">
+      {/* Animated background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-transparent opacity-50" />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 scroll-reveal ${headerVisible ? 'active' : ''}`}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
             Experience
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -118,78 +209,7 @@ export function Experience() {
 
         <div className="space-y-8">
           {experiences.map((exp, index) => (
-            <Card
-              key={exp.id}
-              className="p-6 md:p-8 hover:shadow-lg transition-all duration-300 hover-elevate"
-              style={{
-                animationDelay: `${index * 100}ms`
-              }}
-              data-testid={`card-experience-${exp.id}`}
-            >
-              <div className="flex flex-col md:flex-row md:items-start gap-6">
-                <div className="flex items-center justify-center md:w-24 md:h-24 w-20 h-20 flex-shrink-0 bg-white dark:bg-muted rounded-md p-2 border border-border">
-                  <img
-                    src={exp.logo}
-                    alt={`${exp.company} logo`}
-                    className="w-full h-full object-contain"
-                    data-testid={`img-logo-${exp.id}`}
-                  />
-                </div>
-
-                <div className="flex-1">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
-                    <div>
-                      <h3 className="text-xl md:text-2xl font-bold text-foreground">
-                        {exp.role}
-                      </h3>
-                      <p className="text-lg font-semibold text-primary">
-                        {exp.company}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {exp.location} • {exp.period}
-                      </p>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-2 mb-4">
-                    {(expandedId === exp.id ? exp.allResponsibilities : exp.highlights).map(
-                      (item, i) => (
-                        <li
-                          key={i}
-                          className="flex gap-3 text-foreground"
-                          data-testid={`text-responsibility-${exp.id}-${i}`}
-                        >
-                          <span className="text-accent font-bold mt-1">•</span>
-                          <span className="leading-relaxed">{item}</span>
-                        </li>
-                      )
-                    )}
-                  </ul>
-
-                  {exp.allResponsibilities.length > exp.highlights.length && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => toggleExpand(exp.id)}
-                      className="gap-2"
-                      data-testid={`button-expand-${exp.id}`}
-                    >
-                      {expandedId === exp.id ? (
-                        <>
-                          <ChevronUp size={16} />
-                          Show Less
-                        </>
-                      ) : (
-                        <>
-                          <ChevronDown size={16} />
-                          Read More
-                        </>
-                      )}
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </Card>
+            <ExperienceCard key={exp.id} exp={exp} index={index} />
           ))}
         </div>
       </div>

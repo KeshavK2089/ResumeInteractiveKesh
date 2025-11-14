@@ -1,5 +1,6 @@
 import { Card } from '@/components/ui/card';
 import { GraduationCap } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 interface Degree {
   id: string;
@@ -41,26 +42,21 @@ const degrees: Degree[] = [
   }
 ];
 
-export function Education() {
-  return (
-    <section id="education" className="py-20 md:py-32 px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Education
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Advanced training in bioengineering and biomedical device development
-          </p>
-        </div>
+function DegreeCard({ degree, index }: { degree: Degree; index: number }) {
+  const { ref, isVisible } = useScrollAnimation(0.2);
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {degrees.map((degree) => (
-            <Card
-              key={degree.id}
-              className="p-8 hover:shadow-lg transition-all duration-300 hover-elevate"
-              data-testid={`card-education-${degree.id}`}
-            >
+  return (
+    <div
+      ref={ref}
+      className={`scroll-scale ${isVisible ? 'active' : ''}`}
+      style={{
+        transitionDelay: `${index * 200}ms`
+      }}
+    >
+      <Card
+        className="p-8 hover:shadow-2xl transition-all duration-500 hover-elevate card-3d group"
+        data-testid={`card-education-${degree.id}`}
+      >
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <GraduationCap className="text-primary" size={24} />
@@ -85,19 +81,47 @@ export function Education() {
                 </p>
               </div>
 
-              <ul className="space-y-2">
-                {degree.details.map((detail, index) => (
-                  <li
-                    key={index}
-                    className="flex gap-3 text-foreground"
-                    data-testid={`text-detail-${degree.id}-${index}`}
-                  >
-                    <span className="text-accent font-bold mt-1">•</span>
-                    <span className="leading-relaxed">{detail}</span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
+        <ul className="space-y-2">
+          {degree.details.map((detail, index) => (
+            <li
+              key={index}
+              className="flex gap-3 text-foreground"
+              data-testid={`text-detail-${degree.id}-${index}`}
+            >
+              <span className="text-accent font-bold mt-1">•</span>
+              <span className="leading-relaxed">{detail}</span>
+            </li>
+          ))}
+        </ul>
+      </Card>
+    </div>
+  );
+}
+
+export function Education() {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation(0.3);
+
+  return (
+    <section id="education" className="py-20 md:py-32 px-6 bg-background relative overflow-hidden">
+      {/* Animated background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-bl from-primary/5 via-accent/5 to-transparent opacity-50" />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 scroll-reveal ${headerVisible ? 'active' : ''}`}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+            Education
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Advanced training in bioengineering and biomedical device development
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {degrees.map((degree, index) => (
+            <DegreeCard key={degree.id} degree={degree} index={index} />
           ))}
         </div>
       </div>
