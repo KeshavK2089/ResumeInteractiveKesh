@@ -43,7 +43,7 @@ client/src/
 
 ### Key Features
 1. **Responsive Navigation**: Sticky header with active section highlighting, mobile hamburger menu
-2. **Hero Section**: Professional introduction with smooth scroll CTAs
+2. **Hero Section**: Full-screen Boston skyline background with dark gradient overlay, professional introduction with smooth scroll CTAs
 3. **Experience Timeline**: 4 positions (Epic Systems, Insulet, Acorda, CSC) with company logos and expandable details
 4. **Skills Visualization**: 
    - Technical tools as monospace badges
@@ -80,6 +80,8 @@ client/src/
 - Added 1-year caching for PDFs to reduce bandwidth costs
 - 2024-11-13: Simplified Skills section by removing progress bars - now displays as clean badges
 - 2024-11-13: Added company logos to Experience timeline for enhanced visual appeal
+- 2024-11-14: Added Boston skyline background image to Hero section with dark gradient overlay for optimal text readability
+- 2024-11-14: Created GitHub Pages deployment infrastructure (build script, workflow, documentation)
 
 ## Development Notes
 - Follow design_guidelines.md for all UI implementations

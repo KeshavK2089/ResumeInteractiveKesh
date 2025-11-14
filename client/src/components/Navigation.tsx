@@ -53,10 +53,8 @@ export function Navigation() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-background/80 backdrop-blur-lg border-b border-border shadow-sm'
-            : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 dark:bg-gray-950/90 backdrop-blur-lg border-b border-border/50 ${
+          scrolled ? 'shadow-md' : 'shadow-sm'
         }`}
       >
         <nav className="max-w-7xl mx-auto px-6 py-4">
@@ -77,7 +75,7 @@ export function Navigation() {
                   className={`px-4 py-2 rounded-lg font-medium transition-all hover-elevate active-elevate-2 ${
                     activeSection === link.id
                       ? 'text-primary font-semibold'
-                      : 'text-muted-foreground'
+                      : 'text-foreground'
                   }`}
                   data-testid={`link-nav-${link.id}`}
                 >
