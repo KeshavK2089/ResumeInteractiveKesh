@@ -78,7 +78,7 @@ const projects: Project[] = [
       'GitHub Pages'
     ],
     icon: Clock,
-    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame/timeline'
+    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame'
   }
 ];
 
