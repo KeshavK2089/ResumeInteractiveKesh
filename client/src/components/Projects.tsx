@@ -63,7 +63,7 @@ const projects: Project[] = [
     title: 'Medical Device History Game',
     subtitle: 'Interactive Timeline Project',
     location: 'Personal Project',
-    period: '2024',
+    period: '2025',
     description: [
       'Created an interactive timeline exploring the evolution of medical devices throughout history',
       'Developed engaging educational content showcasing key milestones in medical technology',
