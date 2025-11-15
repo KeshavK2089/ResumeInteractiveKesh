@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Microscope, Wrench } from 'lucide-react';
+import { ExternalLink, Microscope, Wrench, Clock } from 'lucide-react';
 
 interface Project {
   id: string;
@@ -12,6 +12,7 @@ interface Project {
   description: string[];
   technologies: string[];
   icon: typeof Microscope;
+  link?: string;
 }
 
 const projects: Project[] = [
@@ -56,6 +57,28 @@ const projects: Project[] = [
       'Team Collaboration'
     ],
     icon: Wrench
+  },
+  {
+    id: 'medical-device-history',
+    title: 'Medical Device History Game',
+    subtitle: 'Interactive Timeline Project',
+    location: 'Personal Project',
+    period: '2024',
+    description: [
+      'Created an interactive timeline exploring the evolution of medical devices throughout history',
+      'Developed engaging educational content showcasing key milestones in medical technology',
+      'Built with modern web technologies for an intuitive and responsive user experience'
+    ],
+    technologies: [
+      'React',
+      'JavaScript',
+      'Timeline Visualization',
+      'Medical History',
+      'Interactive Design',
+      'GitHub Pages'
+    ],
+    icon: Clock,
+    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame/timeline'
   }
 ];
 
@@ -84,7 +107,7 @@ export function Projects() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects.map((project) => (
             <Card
               key={project.id}
@@ -143,6 +166,18 @@ export function Projects() {
                 >
                   <ExternalLink size={16} />
                   View Full Paper
+                </Button>
+              )}
+              
+              {project.link && (
+                <Button
+                  variant="outline"
+                  className="w-full gap-2"
+                  onClick={() => window.open(project.link, '_blank')}
+                  data-testid={`button-view-project-${project.id}`}
+                >
+                  <ExternalLink size={16} />
+                  View Interactive Timeline
                 </Button>
               )}
             </Card>
