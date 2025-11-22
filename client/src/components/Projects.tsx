@@ -106,7 +106,7 @@ export function Projects() {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Academic research and engineering projects advancing biomedical innovation
-@@ -146,44 +162,63 @@ export function Projects() {
+@@ -146,44 +162,77 @@ export function Projects() {
 
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.technologies.map((tech) => (
@@ -137,28 +137,42 @@ export function Projects() {
                 <div className="space-y-3">
                   {project.primaryLink && (
                     <Button
+                      asChild
                       variant="outline"
                       className="w-full gap-2"
-                      onClick={() => window.open(project.primaryLink?.href, '_blank')}
                       data-testid={`button-view-project-${project.id}`}
                     >
-                      <ExternalLink size={16} />
-                      {project.primaryLink.label}
+                      <a
+                        href={project.primaryLink.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center justify-center gap-2"
+                      >
+                        <ExternalLink size={16} />
+                        {project.primaryLink.label}
+                      </a>
                     </Button>
                   )}
 
                   {project.additionalLinks?.map((additionalLink) => (
                     <Button
                       key={additionalLink.href}
+                      asChild
                       variant="outline"
                       className="w-full gap-2"
-                      onClick={() => window.open(additionalLink.href, '_blank')}
                       data-testid={`button-additional-link-${project.id}-${additionalLink.label
                         .toLowerCase()
                         .replace(/\s+/g, '-')}`}
                     >
-                      <ExternalLink size={16} />
-                      {additionalLink.label}
+                      <a
+                        href={additionalLink.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center justify-center gap-2"
+                      >
+                        <ExternalLink size={16} />
+                        {additionalLink.label}
+                      </a>
                     </Button>
                   ))}
                 </div>
