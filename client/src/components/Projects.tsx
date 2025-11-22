@@ -38,7 +38,21 @@ const projects: Project[] = [
     icon: Microscope
   },
   {
-@@ -56,51 +63,60 @@ const projects: Project[] = [
+    id: 'cornerstone',
+    title: 'Cornerstone Engineering Project',
+    subtitle: 'Northeastern University',
+    location: 'Boston, MA',
+    period: 'September 2021 - June 2022',
+    description: [
+      'Constructed a hands-free water fountain modifier using Arduino sensors and SolidWorks 3D-printed components',
+      'Conducted prototyping and testing cycles to refine sensor calibration, water flow efficiency, and component durability',
+      'Collaborated in a team of 4 to manage project timeline, divide tasks, and integrate hardware/software components'
+    ],
+    technologies: [
+      'Arduino',
+      'SolidWorks',
+      '3D Printing',
+      'Sensor Integration',
       'Prototyping',
       'Team Collaboration'
     ],
@@ -64,8 +78,13 @@ const projects: Project[] = [
       'GitHub Pages'
     ],
     icon: Clock,
-    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame'
-  }
+    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame',
+    additionalLinks: [
+      {
+        label: 'Play Glucose Odyssey',
+        href: 'https://keshavk2089.github.io/GlucoseOdyssey/'
+      }
+    ]  }
 ];
 
 export function Projects() {
@@ -90,7 +109,45 @@ export function Projects() {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Academic research and engineering projects advancing biomedical innovation
-@@ -146,44 +162,77 @@ export function Projects() {
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <Card
+              key={project.id}
+              className="p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              data-testid={`card-project-${project.id}`}
+            >
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
+                  <project.icon className="text-white" size={28} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1">
+                    {project.title}
+                  </h3>
+                  <p className="text-base font-semibold text-primary mb-1">
+                    {project.subtitle}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {project.location} • {project.period}
+                  </p>
+                </div>
+              </div>
+
+              <ul className="space-y-3 mb-6">
+                {project.description.map((item, index) => (
+                  <li
+                    key={index}
+                    className="flex gap-3 text-sm text-foreground"
+                    data-testid={`text-description-${project.id}-${index}`}
+                  >
+                    <span className="text-accent font-bold mt-1">•</span>
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
 
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.technologies.map((tech) => (
