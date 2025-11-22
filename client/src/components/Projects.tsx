@@ -12,14 +12,7 @@ interface Project {
   description: string[];
   technologies: string[];
   icon: typeof Microscope;
-  primaryLink?: {
-    label: string;
-    href: string;
-  };
-  additionalLinks?: {
-    label: string;
-    href: string;
-  }[];
+  link?: string;
 }
 
 const projects: Project[] = [
@@ -71,16 +64,7 @@ const projects: Project[] = [
       'GitHub Pages'
     ],
     icon: Clock,
-    primaryLink: {
-      label: 'View Interactive Timeline',
-      href: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame'
-    },
-    additionalLinks: [
-      {
-        label: 'Play Glucose Odyssey',
-        href: 'https://keshavk2089.github.io/GlucoseOdyssey/'
-      }
-    ]
+    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame'
   }
 ];
 
@@ -132,50 +116,17 @@ export function Projects() {
                   View Full Paper
                 </Button>
               )}
-
-              {(project.primaryLink || project.additionalLinks?.length) && (
-                <div className="space-y-3">
-                  {project.primaryLink && (
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="w-full gap-2"
-                      data-testid={`button-view-project-${project.id}`}
-                    >
-                      <a
-                        href={project.primaryLink.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-center gap-2"
-                      >
-                        <ExternalLink size={16} />
-                        {project.primaryLink.label}
-                      </a>
-                    </Button>
-                  )}
-
-                  {project.additionalLinks?.map((additionalLink) => (
-                    <Button
-                      key={additionalLink.href}
-                      asChild
-                      variant="outline"
-                      className="w-full gap-2"
-                      data-testid={`button-additional-link-${project.id}-${additionalLink.label
-                        .toLowerCase()
-                        .replace(/\s+/g, '-')}`}
-                    >
-                      <a
-                        href={additionalLink.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-center gap-2"
-                      >
-                        <ExternalLink size={16} />
-                        {additionalLink.label}
-                      </a>
-                    </Button>
-                  ))}
-                </div>
+              
+              {project.link && (
+                <Button
+                  variant="outline"
+                  className="w-full gap-2"
+                  onClick={() => window.open(project.link, '_blank')}
+                  data-testid={`button-view-project-${project.id}`}
+                >
+                  <ExternalLink size={16} />
+                  View Interactive Timeline
+                </Button>
               )}
             </Card>
           ))}
