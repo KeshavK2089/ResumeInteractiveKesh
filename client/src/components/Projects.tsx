@@ -106,7 +106,7 @@ export function Projects() {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Academic research and engineering projects advancing biomedical innovation
-@@ -146,44 +162,61 @@ export function Projects() {
+@@ -146,44 +162,63 @@ export function Projects() {
 
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.technologies.map((tech) => (
@@ -153,7 +153,9 @@ export function Projects() {
                       variant="outline"
                       className="w-full gap-2"
                       onClick={() => window.open(additionalLink.href, '_blank')}
-                      data-testid={`button-additional-link-${project.id}-${additionalLink.label.toLowerCase().replace(/\s+/g, '-')}`}
+                      data-testid={`button-additional-link-${project.id}-${additionalLink.label
+                        .toLowerCase()
+                        .replace(/\s+/g, '-')}`}
                     >
                       <ExternalLink size={16} />
                       {additionalLink.label}
