@@ -13,6 +13,10 @@ interface Project {
   technologies: string[];
   icon: typeof Microscope;
   link?: string;
+    additionalLinks?: {
+    label: string;
+    href: string;
+  }[];
 }
 
 const projects: Project[] = [
@@ -185,6 +189,19 @@ export function Projects() {
                   View Interactive Timeline
                 </Button>
               )}
+              
+              {project.additionalLinks?.map((additionalLink) => (
+                <Button
+                  key={additionalLink.href}
+                  variant="outline"
+                  className="w-full gap-2 mt-3"
+                  onClick={() => window.open(additionalLink.href, '_blank')}
+                  data-testid={`button-additional-link-${project.id}`}
+                >
+                  <ExternalLink size={16} />
+                  {additionalLink.label}
+                </Button>
+              ))}
             </Card>
           ))}
         </div>
