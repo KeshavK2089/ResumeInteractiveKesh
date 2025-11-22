@@ -78,8 +78,13 @@ const projects: Project[] = [
       'GitHub Pages'
     ],
     icon: Clock,
-    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame'
-  }
+    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame',
+    additionalLinks: [
+      {
+        label: 'Play Glucose Odyssey',
+        href: 'https://keshavk2089.github.io/GlucoseOdyssey/'
+      }
+    ]  }
 ];
 
 export function Projects() {
