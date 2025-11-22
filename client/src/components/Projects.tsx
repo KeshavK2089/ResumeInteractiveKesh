@@ -13,6 +13,11 @@ interface Project {
   technologies: string[];
   icon: typeof Microscope;
   link?: string;
+  // Added this so the code knows about your extra buttons
+  additionalLinks?: {
+    label: string;
+    href: string;
+  }[];
 }
 
 const projects: Project[] = [
@@ -59,32 +64,34 @@ const projects: Project[] = [
     icon: Wrench
   },
   {
-    id: 'medical-device-history',
-    title: 'Medical Device History Game',
-    subtitle: 'Interactive Timeline Project',
-    location: 'Personal Project',
+    id: 'side-projects', // Renamed ID to match the new title
+    title: 'Side Projects',
+    subtitle: 'Interactive Web Applications',
+    location: 'Personal Projects',
     period: '2025',
     description: [
-      'Created an interactive timeline exploring the evolution of medical devices throughout history',
-      'Developed engaging educational content showcasing key milestones in medical technology',
-      'Built with modern web technologies for an intuitive and responsive user experience'
+      'Developed interactive educational games and historical timelines to showcase technical skills',
+      'Built engaging web experiences exploring medical history and glucose management scenarios',
+      ' utilized modern web technologies (React, GitHub Pages) for intuitive user experiences'
     ],
     technologies: [
       'React',
       'JavaScript',
-      'Timeline Visualization',
+      'Game Logic',
       'Medical History',
       'Interactive Design',
       'GitHub Pages'
     ],
     icon: Clock,
     link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame',
+    // This data is now active and will appear as a second button
     additionalLinks: [
       {
         label: 'Play Glucose Odyssey',
-        href: 'https://keshavk2089.github.io/GlucoseOdyssey/'
+        href: 'https://keshavk2089.github.io/GlucoseOdyssey/#/'
       }
-    ]  }
+    ]
+  }
 ];
 
 export function Projects() {
@@ -162,29 +169,45 @@ export function Projects() {
                 ))}
               </div>
 
-              {project.id === 'capstone' && (
-                <Button
-                  variant="outline"
-                  className="w-full gap-2"
-                  onClick={scrollToResearch}
-                  data-testid="button-view-full-paper"
-                >
-                  <ExternalLink size={16} />
-                  View Full Paper
-                </Button>
-              )}
-              
-              {project.link && (
-                <Button
-                  variant="outline"
-                  className="w-full gap-2"
-                  onClick={() => window.open(project.link, '_blank')}
-                  data-testid={`button-view-project-${project.id}`}
-                >
-                  <ExternalLink size={16} />
-                  View Interactive Timeline
-                </Button>
-              )}
+              <div className="space-y-2">
+                {project.id === 'capstone' && (
+                  <Button
+                    variant="outline"
+                    className="w-full gap-2"
+                    onClick={scrollToResearch}
+                    data-testid="button-view-full-paper"
+                  >
+                    <ExternalLink size={16} />
+                    View Full Paper
+                  </Button>
+                )}
+
+                {/* Primary Link (Medical Device Game) */}
+                {project.link && (
+                  <Button
+                    variant="outline"
+                    className="w-full gap-2"
+                    onClick={() => window.open(project.link, '_blank')}
+                    data-testid={`button-view-project-${project.id}`}
+                  >
+                    <ExternalLink size={16} />
+                    View Medical Device History
+                  </Button>
+                )}
+
+                {/* NEW: Loop through additional links (Glucose Odyssey) */}
+                {project.additionalLinks?.map((link, i) => (
+                  <Button
+                    key={i}
+                    variant="outline"
+                    className="w-full gap-2"
+                    onClick={() => window.open(link.href, '_blank')}
+                  >
+                    <ExternalLink size={16} />
+                    {link.label}
+                  </Button>
+                ))}
+              </div>
             </Card>
           ))}
         </div>
