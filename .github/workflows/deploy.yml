@@ -1,3 +1,6 @@
++3
+-0
+
 name: Deploy to GitHub Pages
 
 on:
@@ -20,6 +23,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -46,30 +52,3 @@ jobs:
           echo "=== Checking dist directory ==="
           ls -la dist/ || echo "No dist/ directory"
           ls -la dist/public/ || echo "No dist/public/ directory"
-          echo "=== Checking client/dist directory ==="
-          ls -la client/dist/ || echo "No client/dist/ directory"
-
-      - name: Copy assets
-        run: |
-          cp -r attached_assets dist/public/
-
-      - name: Setup GitHub Pages routing
-        run: |
-          cp dist/public/index.html dist/public/404.html
-          touch dist/public/.nojekyll
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist/public'
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
