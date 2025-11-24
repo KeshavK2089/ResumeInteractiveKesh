@@ -167,7 +167,7 @@ export function Research() {
 
           <TabsContent value="resume">
             <PDFViewer
-              file={`${import.meta.env.BASE_URL}attached_assets/KeshavK_Resume_1763045236042.pdf`}
+              file={`${import.meta.env.BASE_URL}attached_assets/resume.pdf`}
               title="Keshav_Kotteswaran_Resume"
             />
           </TabsContent>
@@ -198,7 +198,7 @@ export function Research() {
             </Card>
 
             <PDFViewer
-              file={`${import.meta.env.BASE_URL}attached_assets/capstone%20(1)_1763045326887.pdf`}
+              file={`${import.meta.env.BASE_URL}attached_assets/capstone.pdf`}
               title="NIH3T3_Cell_Migration_Research"
               showAbstract={true}
             />
