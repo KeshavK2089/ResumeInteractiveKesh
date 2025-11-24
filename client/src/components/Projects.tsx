@@ -70,20 +70,20 @@ const projects: Project[] = [
     location: 'Personal Projects',
     period: '2025',
     description: [
-      'Developed interactive educational games and historical timelines to showcase technical skills',
-      'Built engaging web experiences exploring medical history and glucose management scenarios',
-      ' utilized modern web technologies (React, GitHub Pages) for intuitive user experiences'
+      'Built Prep Flow, an interview-prep web app that guides structured practice sessions',
+      'Created interactive tools as personal projects to inspire peers and track my own growth',
+      'Deployed modern React-based experiences to share learnings quickly with others'
     ],
     technologies: [
       'React',
-      'JavaScript',
-      'Game Logic',
-      'Medical History',
+      'TypeScript',
+      'Interview Prep',
+      'UX Design',
       'Interactive Design',
       'GitHub Pages'
     ],
     icon: Clock,
-    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame',
+    link: 'https://interviewaid.xyz/',
     // This data is now active and will appear as a second button
     additionalLinks: [
       {
@@ -109,54 +109,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-20 md:py-32 px-6 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Research & Projects
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Academic research and engineering projects advancing biomedical innovation
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <Card
-              key={project.id}
-              className="p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              data-testid={`card-project-${project.id}`}
-            >
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
-                  <project.icon className="text-white" size={28} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1">
-                    {project.title}
-                  </h3>
-                  <p className="text-base font-semibold text-primary mb-1">
-                    {project.subtitle}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {project.location} • {project.period}
-                  </p>
-                </div>
-              </div>
-
-              <ul className="space-y-3 mb-6">
-                {project.description.map((item, index) => (
-                  <li
-                    key={index}
-                    className="flex gap-3 text-sm text-foreground"
-                    data-testid={`text-description-${project.id}-${index}`}
-                  >
-                    <span className="text-accent font-bold mt-1">•</span>
-                    <span className="leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-2 mb-6">
+@@ -160,58 +160,58 @@ export function Projects() {
                 {project.technologies.map((tech) => (
                   <Badge
                     key={tech}
@@ -182,7 +135,7 @@ export function Projects() {
                   </Button>
                 )}
 
-                {/* Primary Link (Medical Device Game) */}
+                {/* Primary Link (Prep Flow) */}
                 {project.link && (
                   <Button
                     variant="outline"
@@ -191,7 +144,7 @@ export function Projects() {
                     data-testid={`button-view-project-${project.id}`}
                   >
                     <ExternalLink size={16} />
-                    View Medical Device History
+                    Try Prep Flow
                   </Button>
                 )}
 
