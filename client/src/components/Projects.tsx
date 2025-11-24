@@ -71,8 +71,8 @@ const projects: Project[] = [
     period: '2025',
     description: [
       'Built Prep Flow, an interview-prep web app that guides structured practice sessions',
-      'Created interactive tools as personal projects to inspire peers and track my own growth',
-      'Deployed modern React-based experiences to share learnings quickly with others'
+      'Created interactive tools as personal projects',
+      'Deployed modern React-based experiences'
     ],
     technologies: [
       'React',
