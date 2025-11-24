@@ -109,62 +109,113 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-20 md:py-32 px-6 bg-muted/30">
-@@ -160,58 +160,58 @@ export function Projects() {
-                {project.technologies.map((tech) => (
-                  <Badge
-                    key={tech}
-                    variant="secondary"
-                    className="text-xs font-mono"
-                    data-testid={`badge-tech-${project.id}-${tech.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-
-              <div className="space-y-2">
-                {project.id === 'capstone' && (
-                  <Button
-                    variant="outline"
-                    className="w-full gap-2"
-                    onClick={scrollToResearch}
-                    data-testid="button-view-full-paper"
-                  >
-                    <ExternalLink size={16} />
-                    View Full Paper
-                  </Button>
-                )}
-
-                {/* Primary Link (Prep Flow) */}
-                {project.link && (
-                  <Button
-                    variant="outline"
-                    className="w-full gap-2"
-                    onClick={() => window.open(project.link, '_blank')}
-                    data-testid={`button-view-project-${project.id}`}
-                  >
-                    <ExternalLink size={16} />
-                    Try Prep Flow
-                  </Button>
-                )}
-
-                {/* NEW: Loop through additional links (Glucose Odyssey) */}
-                {project.additionalLinks?.map((link, i) => (
-                  <Button
-                    key={i}
-                    variant="outline"
-                    className="w-full gap-2"
-                    onClick={() => window.open(link.href, '_blank')}
-                  >
-                    <ExternalLink size={16} />
-                    {link.label}
-                  </Button>
-                ))}
-              </div>
-            </Card>
-          ))}
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Research & Projects
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Academic research and engineering projects advancing biomedical innovation
+          </p>
         </div>
-      </div>
-    </section>
-  );
-}
+
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          {projects.map((project) => {
+            const Icon = project.icon;
+
+            return (
+              <Card
+                key={project.id}
+                className="p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                data-testid={`card-project-${project.id}`}
+              >
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
+                    <Icon className="text-white" size={28} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1">
+                      {project.title}
+                    </h3>
+                    <p className="text-base font-semibold text-primary mb-1">
+                      {project.subtitle}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {project.location} • {project.period}
+                    </p>
+                  </div>
+                </div>
+
+                <ul className="space-y-3 mb-6">
+                  {project.description.map((item, index) => (
+                    <li
+                      key={index}
+                      className="flex gap-3 text-sm text-foreground"
+                      data-testid={`text-description-${project.id}-${index}`}
+                    >
+                      <span className="text-accent font-bold mt-1">•</span>
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.map((tech) => (
+                    <Badge
+                      key={tech}
+                      variant="secondary"
+                      className="text-xs font-mono"
+                      data-testid={`badge-tech-${project.id}-${tech.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+
+                <div className="space-y-2">
+                  {project.id === 'capstone' && (
+                    <Button
+                      variant="outline"
+                      className="w-full gap-2"
+                      onClick={scrollToResearch}
+                      data-testid="button-view-full-paper"
+                    >
+                      <ExternalLink size={16} />
+                      View Full Paper
+                    </Button>
+                  )}
+
+                  {/* Primary Link (Prep Flow) */}
+                  {project.link && (
+                    <Button
+                      variant="outline"
+                      className="w-full gap-2"
+                      onClick={() => window.open(project.link, '_blank')}
+                      data-testid={`button-view-project-${project.id}`}
+                    >
+                      <ExternalLink size={16} />
+                      Try Prep Flow
+                    </Button>
+                  )}
+
+                  {/* NEW: Loop through additional links (Glucose Odyssey) */}
+                  {project.additionalLinks?.map((link, i) => (
+                    <Button
+                      key={i}
+                      variant="outline"
+                      className="w-full gap-2"
+                      onClick={() => window.open(link.href, '_blank')}
+                    >
+                      <ExternalLink size={16} />
+                      {link.label}
+                    </Button>
+                  ))}
+                </div>
+              </Card>
+            );
+          })}
+          </div>
+        </div>
+      </section>
+    );
+  }
