@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import pdfWorkerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -11,13 +10,12 @@ import {
   ChevronLeft,
   ChevronRight,
   FileText,
-  GraduationCap,
-  AlertTriangle,
+  GraduationCap
 } from 'lucide-react';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerSrc;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 interface PDFViewerProps {
   file: string;
@@ -30,17 +28,9 @@ function PDFViewer({ file, title, showAbstract }: PDFViewerProps) {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [scale, setScale] = useState<number>(1.0);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
-    setLoading(false);
-    setError(null);
-  }
-
-  function onDocumentError(err: Error) {
-    console.error('PDF failed to load', err);
-    setError('Unable to load the PDF. Please try again or download it directly.');
     setLoading(false);
   }
 
@@ -93,59 +83,26 @@ function PDFViewer({ file, title, showAbstract }: PDFViewerProps) {
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
           </div>
         )}
-
-        {error && (
-          <div className="flex flex-col items-center justify-center text-center gap-3 text-muted-foreground">
-            <AlertTriangle className="text-destructive" />
-            <p className="font-medium text-foreground">{error}</p>
-            <Button onClick={downloadPDF} variant="secondary" className="gap-2">
-              <Download size={18} />
-              Download PDF
-            </Button>
-          </div>
-        )}
-
-        {!error && (
-          <Document
-            key={file}
-            file={file}
-            onLoadSuccess={onDocumentLoadSuccess}
-            onLoadError={onDocumentError}
-            onSourceError={onDocumentError}
-            loading={null}
-            className="max-w-full"
-          >
-            <Page
-              pageNumber={pageNumber}
-              scale={scale}
-              renderTextLayer={true}
-              renderAnnotationLayer={true}
-              className="shadow-lg"
-            />
-          </Document>
-        )}
+        <Document
+          file={file}
+          onLoadSuccess={onDocumentLoadSuccess}
+          loading={null}
+          className="max-w-full"
+        >
+          <Page
+            pageNumber={pageNumber}
+            scale={scale}
+            renderTextLayer={true}
+            renderAnnotationLayer={true}
+            className="shadow-lg"
+          />
+        </Document>
       </div>
-
-      {showAbstract && (
-        <Card className="p-6">
-          <h4 className="text-lg font-semibold mb-2">Abstract</h4>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            This capstone project developed a comprehensive protocol for modifying and testing
-            NIH 3T3 fibroblasts to optimize cellular migration for wound healing applications. The
-            research involved PDGFR gene transfection, chemotactic analysis, and statistical
-            modeling, achieving a validated 25% improvement in cellular mobility. The study
-            demonstrates significant potential for advancing regenerative medicine and tissue
-            engineering applications.
-          </p>
-        </Card>
-      )}
     </div>
   );
 }
 
 export function Research() {
-  const assetBase = `${import.meta.env.BASE_URL}attached_assets/`;
-
   return (
     <section id="research" className="py-20 md:py-32 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
@@ -171,7 +128,10 @@ export function Research() {
           </TabsList>
 
           <TabsContent value="resume">
-            <PDFViewer file={`${assetBase}resume.pdf`} title="Keshav_Kotteswaran_Resume" />
+            <PDFViewer
+              file={`${import.meta.env.BASE_URL}attached_assets/resume.pdf`}
+              title="Keshav_Kotteswaran_Resume"
+            />
           </TabsContent>
 
           <TabsContent value="research">
@@ -183,23 +143,24 @@ export function Research() {
                 NORTHEASTERN UNIVERSITY • BIOE 4792 Capstone Design Report (CDR)
               </p>
               <p className="text-sm font-semibold text-primary mb-2">
-                Authors: Christopher Schmidt, Jonathan Kim, Victoria Rivera, Harris Goodwin, Jacob Miller,
-                Keshav Kotteswaran
+                Authors: Christopher Schmidt, Jonathan Kim, Victoria Rivera, Harris Goodwin,
+                Jacob Miller, Keshav Kotteswaran
               </p>
               <p className="text-sm text-muted-foreground mb-4">
                 Faculty Advisor: Narges Yazdani | April 21, 2024
               </p>
               <p className="text-foreground leading-relaxed">
-                This capstone project developed a comprehensive protocol for modifying and testing NIH 3T3
-                fibroblasts to optimize cellular migration for wound healing applications. The research
-                involved PDGFR gene transfection, chemotactic analysis, and statistical modeling, achieving
-                a validated 25% improvement in cellular mobility. The study demonstrates significant
-                potential for advancing regenerative medicine and tissue engineering applications.
+                This capstone project developed a comprehensive protocol for modifying and testing
+                NIH 3T3 fibroblasts to optimize cellular migration for wound healing applications.
+                The research involved PDGFR gene transfection, chemotactic analysis, and statistical
+                modeling, achieving a validated 25% improvement in cellular mobility. The study
+                demonstrates significant potential for advancing regenerative medicine and tissue
+                engineering applications.
               </p>
             </Card>
 
             <PDFViewer
-              file={`${assetBase}capstone.pdf`}
+              file={`${import.meta.env.BASE_URL}attached_assets/capstone.pdf`}
               title="NIH3T3_Cell_Migration_Research"
               showAbstract={true}
             />
