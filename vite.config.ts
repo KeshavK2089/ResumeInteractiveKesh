@@ -1,12 +1,28 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import fs from "fs";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
   plugins: [
     react(),
     runtimeErrorOverlay(),
+    {
+      name: "copy-attached-assets",
+      apply: "build",
+      async closeBundle() {
+        const sourceDir = path.resolve(import.meta.dirname, "attached_assets");
+        const destinationDir = path.resolve(
+          import.meta.dirname,
+          "dist/public/attached_assets",
+        );
+
+        await fs.promises.rm(destinationDir, { recursive: true, force: true });
+        await fs.promises.mkdir(destinationDir, { recursive: true });
+        await fs.promises.cp(sourceDir, destinationDir, { recursive: true });
+      },
+    },
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
@@ -32,9 +48,3 @@ export default defineConfig({
     emptyOutDir: true,
   },
   server: {
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
-    },
-  },
-});
