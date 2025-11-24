@@ -11,7 +11,8 @@ import {
   ChevronLeft,
   ChevronRight,
   FileText,
-  GraduationCap
+  GraduationCap,
+  AlertTriangle,
 } from 'lucide-react';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -29,9 +30,17 @@ function PDFViewer({ file, title, showAbstract }: PDFViewerProps) {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [scale, setScale] = useState<number>(1.0);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
+    setLoading(false);
+    setError(null);
+  }
+
+  function onDocumentError(err: Error) {
+    console.error('PDF failed to load', err);
+    setError('Unable to load the PDF. Please try again or download it directly.');
     setLoading(false);
   }
 
@@ -42,3 +51,161 @@ function PDFViewer({ file, title, showAbstract }: PDFViewerProps) {
   const goToNextPage = () => setPageNumber((prev) => Math.min(prev + 1, numPages));
 
   const downloadPDF = () => {
+    const link = document.createElement('a');
+    link.href = file;
+    link.download = title.replace(/\s+/g, '_') + '.pdf';
+    link.click();
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="sticky top-20 z-10 bg-background/95 backdrop-blur-sm border border-border rounded-lg p-4 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={goToPrevPage}
+              disabled={pageNumber <= 1}
+@@ -99,112 +109,141 @@ function PDFViewer({ file, title, showAbstract }: PDFViewerProps) {
+              data-testid="button-pdf-zoom-in"
+              aria-label="Zoom in"
+            >
+              <ZoomIn size={20} />
+            </Button>
+          </div>
+
+          <Button
+            variant="default"
+            onClick={downloadPDF}
+            className="gap-2"
+            data-testid="button-pdf-download"
+          >
+            <Download size={18} />
+            Download
+          </Button>
+        </div>
+      </div>
+
+      <div className="flex justify-center bg-muted/30 rounded-lg p-8 min-h-[600px]">
+        {loading && (
+          <div className="flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+          </div>
+        )}
+
+        {error && (
+          <div className="flex flex-col items-center justify-center text-center gap-3 text-muted-foreground">
+            <AlertTriangle className="text-destructive" />
+            <p className="font-medium text-foreground">{error}</p>
+            <Button onClick={downloadPDF} variant="secondary" className="gap-2">
+              <Download size={18} />
+              Download PDF
+            </Button>
+          </div>
+        )}
+
+        {!error && (
+          <Document
+            key={file}
+            file={file}
+            onLoadSuccess={onDocumentLoadSuccess}
+            onLoadError={onDocumentError}
+            onSourceError={onDocumentError}
+            loading={null}
+            className="max-w-full"
+          >
+            <Page
+              pageNumber={pageNumber}
+              scale={scale}
+              renderTextLayer={true}
+              renderAnnotationLayer={true}
+              className="shadow-lg"
+            />
+          </Document>
+        )}
+      </div>
+
+      {showAbstract && (
+        <Card className="p-6">
+          <h4 className="text-lg font-semibold mb-2">Abstract</h4>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            This capstone project developed a comprehensive protocol for modifying and testing
+            NIH 3T3 fibroblasts to optimize cellular migration for wound healing applications. The
+            research involved PDGFR gene transfection, chemotactic analysis, and statistical
+            modeling, achieving a validated 25% improvement in cellular mobility. The study
+            demonstrates significant potential for advancing regenerative medicine and tissue
+            engineering applications.
+          </p>
+        </Card>
+      )}
+    </div>
+  );
+}
+
+export function Research() {
+  const assetBase = `${import.meta.env.BASE_URL}attached_assets/`;
+
+  return (
+    <section id="research" className="py-20 md:py-32 px-6 bg-background">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Documents & Research
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Professional resume and published research paper
+          </p>
+        </div>
+
+        <Tabs defaultValue="resume" className="w-full">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+            <TabsTrigger value="resume" className="gap-2" data-testid="tab-resume">
+              <FileText size={18} />
+              Resume
+            </TabsTrigger>
+            <TabsTrigger value="research" className="gap-2" data-testid="tab-research-paper">
+              <GraduationCap size={18} />
+              Research Paper
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="resume">
+            <PDFViewer file={`${assetBase}resume.pdf`} title="Keshav_Kotteswaran_Resume" />
+          </TabsContent>
+
+          <TabsContent value="research">
+            <Card className="p-6 md:p-8 mb-8 bg-gradient-to-br from-primary/5 to-accent/5">
+              <h3 className="text-2xl font-bold text-foreground mb-3">
+                Modifying NIH3T3 Cell Migration to Enhance Wound Healing
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                NORTHEASTERN UNIVERSITY • BIOE 4792 Capstone Design Report (CDR)
+              </p>
+              <p className="text-sm font-semibold text-primary mb-2">
+                Authors: Christopher Schmidt, Jonathan Kim, Victoria Rivera, Harris Goodwin, Jacob Miller,
+                Keshav Kotteswaran
+              </p>
+              <p className="text-sm text-muted-foreground mb-4">
+                Faculty Advisor: Narges Yazdani | April 21, 2024
+              </p>
+              <p className="text-foreground leading-relaxed">
+                This capstone project developed a comprehensive protocol for modifying and testing NIH 3T3
+                fibroblasts to optimize cellular migration for wound healing applications. The research
+                involved PDGFR gene transfection, chemotactic analysis, and statistical modeling, achieving
+                a validated 25% improvement in cellular mobility. The study demonstrates significant
+                potential for advancing regenerative medicine and tissue engineering applications.
+              </p>
+            </Card>
+
+            <PDFViewer
+              file={`${assetBase}capstone.pdf`}
+              title="NIH3T3_Cell_Migration_Research"
+              showAbstract={true}
+            />
+          </TabsContent>
+        </Tabs>
+      </div>
+    </section>
+  );
+}
