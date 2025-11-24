@@ -70,20 +70,20 @@ const projects: Project[] = [
     location: 'Personal Projects',
     period: '2025',
     description: [
-      'Developed interactive educational games and historical timelines to showcase technical skills',
-      'Built engaging web experiences exploring medical history and glucose management scenarios',
-      ' utilized modern web technologies (React, GitHub Pages) for intuitive user experiences'
+      'Check out PrepFlow to make your interview jitters go away',
+      'Built engaging web experiences exploring personal experience and creativity',
+      'Utilized modern web technologies (React, GitHub Pages) for intuitive user experiences'
     ],
     technologies: [
       'React',
       'JavaScript',
-      'Game Logic',
-      'Medical History',
+      'Gemini API',
+      'Voice Integration',
       'Interactive Design',
       'GitHub Pages'
     ],
     icon: Clock,
-    link: 'https://keshavk2089.github.io/MedicalDeviceHistoryGame',
+    link: 'Interviewaid.xyz',
     // This data is now active and will appear as a second button
     additionalLinks: [
       {
@@ -191,7 +191,7 @@ export function Projects() {
                     data-testid={`button-view-project-${project.id}`}
                   >
                     <ExternalLink size={16} />
-                    View Medical Device History
+                    Try Prep Flow
                   </Button>
                 )}
 
