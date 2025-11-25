@@ -57,7 +57,45 @@ function PDFViewer({ file, title, showAbstract }: PDFViewerProps) {
               variant="outline"
               onClick={goToPrevPage}
               disabled={pageNumber <= 1}
-@@ -99,112 +109,141 @@ function PDFViewer({ file, title, showAbstract }: PDFViewerProps) {
+              data-testid="button-pdf-prev"
+              aria-label="Previous page"
+            >
+              <ChevronLeft size={20} />
+            </Button>
+            <span className="text-sm font-medium px-3" data-testid="text-pdf-page">
+              Page {pageNumber} of {numPages || '...'}
+            </span>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={goToNextPage}
+              disabled={pageNumber >= numPages}
+              data-testid="button-pdf-next"
+              aria-label="Next page"
+            >
+              <ChevronRight size={20} />
+            </Button>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={zoomOut}
+              disabled={scale <= 0.5}
+              data-testid="button-pdf-zoom-out"
+              aria-label="Zoom out"
+            >
+              <ZoomOut size={20} />
+            </Button>
+            <span className="text-sm font-medium px-3" data-testid="text-pdf-zoom">
+              {Math.round(scale * 100)}%
+            </span>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={zoomIn}
+              disabled={scale >= 2.5}
               data-testid="button-pdf-zoom-in"
               aria-label="Zoom in"
             >
@@ -129,7 +167,7 @@ export function Research() {
 
           <TabsContent value="resume">
             <PDFViewer
-              file={`${import.meta.env.BASE_URL}attached_assets/resume.pdf`}
+              file={`${import.meta.env.BASE_URL}attached_assets/KeshavK_Resume_1763045236042.pdf`}
               title="Keshav_Kotteswaran_Resume"
             />
           </TabsContent>
@@ -160,7 +198,7 @@ export function Research() {
             </Card>
 
             <PDFViewer
-              file={`${import.meta.env.BASE_URL}attached_assets/capstone.pdf`}
+              file={`${import.meta.env.BASE_URL}attached_assets/capstone%20(1)_1763045326887.pdf`}
               title="NIH3T3_Cell_Migration_Research"
               showAbstract={true}
             />
