@@ -15,6 +15,10 @@ import {
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
+// Import PDFs directly
+import resumePdf from '@assets/resume.pdf';
+import capstonePdf from '@assets/capstone.pdf';
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 interface PDFViewerProps {
@@ -167,7 +171,7 @@ export function Research() {
 
           <TabsContent value="resume">
             <PDFViewer
-              file={`${import.meta.env.BASE_URL}attached_assets/resume.pdf`}
+              file={resumePdf}
               title="Keshav_Kotteswaran_Resume"
             />
           </TabsContent>
@@ -198,7 +202,7 @@ export function Research() {
             </Card>
 
             <PDFViewer
-              file={`${import.meta.env.BASE_URL}attached_assets/capstone.pdf`}
+              file={capstonePdf}
               title="NIH3T3_Cell_Migration_Research"
               showAbstract={true}
             />
