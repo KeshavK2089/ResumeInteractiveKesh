@@ -70,16 +70,15 @@ const projects: Project[] = [
     location: 'Personal Projects',
     period: '2025',
     description: [
-      'Built Prep Flow, an interview-prep web app that guides structured practice sessions',
-      'Created interactive tools as personal projects',
+      'Built Prep Flow and CocoMed, interactive web apps that solved real-world problems',
+      'Recieved feeback from real users to optimize workflow and UI',
       'Deployed modern React-based experiences'
     ],
     technologies: [
       'React',
       'TypeScript',
-      'Interview Prep',
+      'Javascript',
       'UX Design',
-      'Interactive Design',
       'GitHub Pages'
     ],
     icon: Clock,
@@ -87,8 +86,8 @@ const projects: Project[] = [
     // This data is now active and will appear as a second button
     additionalLinks: [
       {
-        label: 'Play Glucose Odyssey',
-        href: 'https://keshavk2089.github.io/GlucoseOdyssey/#/'
+        label: 'Try CocoMed',
+        href: 'https://www.cocomed.app/'
       }
     ]
   }
