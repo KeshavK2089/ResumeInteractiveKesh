@@ -13,7 +13,6 @@ interface Project {
   technologies: string[];
   icon: typeof Microscope;
   link?: string;
-  // Added this so the code knows about your extra buttons
   additionalLinks?: {
     label: string;
     href: string;
@@ -64,30 +63,34 @@ const projects: Project[] = [
     icon: Wrench
   },
   {
-    id: 'side-projects', // Renamed ID to match the new title
+    id: 'side-projects',
     title: 'Side Projects',
-    subtitle: 'Interactive Web Applications',
+    subtitle: 'Interactive Web & Mobile Applications',
     location: 'Personal Projects',
     period: '2025',
     description: [
-      'Built Prep Flow and CocoMed, interactive web apps that solved real-world problems',
-      'Recieved feeback from real users to optimize workflow and UI',
-      'Deployed modern React-based experiences'
+      'Built Prep Flow, CocoMed, and MedScanAI - interactive applications solving real-world problems',
+      'Received feedback from real users to optimize workflow and UI',
+      'Deployed modern React-based web experiences and native iOS applications'
     ],
     technologies: [
       'React',
       'TypeScript',
-      'Javascript',
+      'Swift',
+      'iOS Development',
       'UX Design',
       'GitHub Pages'
     ],
     icon: Clock,
     link: 'https://interviewaid.xyz/',
-    // This data is now active and will appear as a second button
     additionalLinks: [
       {
         label: 'Try CocoMed',
         href: 'https://www.cocomed.app/'
+      },
+      {
+        label: 'Download MedScanAI',
+        href: 'https://apps.apple.com/us/app/medscanai/id6755940417'
       }
     ]
   }
@@ -197,7 +200,7 @@ export function Projects() {
                     </Button>
                   )}
 
-                  {/* NEW: Loop through additional links (Glucose Odyssey) */}
+                  {/* Additional links (CocoMed & MedScanAI) */}
                   {project.additionalLinks?.map((link, i) => (
                     <Button
                       key={i}
@@ -213,8 +216,8 @@ export function Projects() {
               </Card>
             );
           })}
-          </div>
         </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
+}
