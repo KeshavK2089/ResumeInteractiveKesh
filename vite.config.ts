@@ -3,10 +3,8 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
-// HARDCODED FIX: 
-// We force this to "/" because you are using a custom domain (keshavk.com).
-// This prevents it from accidentally defaulting to a repo sub-folder.
-const basePath = "/";
+// REVERT FIX: Sets the base path to your GitHub repository name.
+const basePath = "/ResumeInteractiveKesh/";
 
 export default defineConfig({
   base: basePath,
