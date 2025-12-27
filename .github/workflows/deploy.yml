@@ -41,7 +41,9 @@ jobs:
         run: |
           BUILD_BASE="$BASE_PATH"
 
-          if [[ -z "$BUILD_BASE" || "$BUILD_BASE" == "/" ]]; then
+          # If GitHub provides a base path (including "/" for custom domains), use it as-is.
+          # Only fall back to the repository name when no base path is provided.
+          if [[ -z "$BUILD_BASE" ]]; then
             if [[ "$REPOSITORY_NAME" == *.github.io ]]; then
               BUILD_BASE="/"
             else
