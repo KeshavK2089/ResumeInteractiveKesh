@@ -3,8 +3,12 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
+// Default to root-level assets so custom domains (e.g., keshavk.com) load correctly.
+// Override BASE_PATH for repository-scoped GitHub Pages deployments when needed.
+const basePath = process.env.BASE_PATH ?? "/";
+
 export default defineConfig({
-  base: '/ResumeInteractiveKesh/',
+  base: basePath,
   plugins: [
     react(),
     runtimeErrorOverlay(),

@@ -38,11 +38,15 @@ jobs:
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
           REPOSITORY_NAME: ${{ github.event.repository.name }}
+          HAS_CNAME: ${{ hashFiles('CNAME') != '' }}
         run: |
           BUILD_BASE="$BASE_PATH"
 
-          if [[ -z "$BUILD_BASE" || "$BUILD_BASE" == "/" ]]; then
-            if [[ "$REPOSITORY_NAME" == *.github.io ]]; then
+          # If GitHub provides a base path (including "/" for custom domains), use it as-is.
+          # If Pages doesn't provide one but a CNAME exists, default to "/" for the custom domain.
+          # Otherwise fall back to the repo name for project pages.
+          if [[ -z "$BUILD_BASE" ]]; then
+            if [[ "$HAS_CNAME" == "true" || "$REPOSITORY_NAME" == *.github.io ]]; then
               BUILD_BASE="/"
             else
               BUILD_BASE="/${REPOSITORY_NAME}/"
@@ -63,6 +67,11 @@ jobs:
       - name: Copy assets
         run: |
           cp -r attached_assets dist/public/
+
+          # Preserve the custom domain when deploying
+          if [[ -f CNAME ]]; then
+            cp CNAME dist/public/
+          fi
 
       - name: Setup GitHub Pages routing
         run: |
