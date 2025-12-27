@@ -3,9 +3,10 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
-// Default to root-level assets so custom domains (e.g., keshavk.com) load correctly.
-// Override BASE_PATH for repository-scoped GitHub Pages deployments when needed.
-const basePath = process.env.BASE_PATH ?? "/";
+// HARDCODED FIX: 
+// We force this to "/" because you are using a custom domain (keshavk.com).
+// This prevents it from accidentally defaulting to a repo sub-folder.
+const basePath = "/";
 
 export default defineConfig({
   base: basePath,
