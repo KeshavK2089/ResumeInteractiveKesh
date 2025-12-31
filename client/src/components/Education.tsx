@@ -20,7 +20,7 @@ const degrees: Degree[] = [
     field: 'Bioengineering',
     university: 'Northeastern University',
     location: 'Boston, MA',
-    gpa: '3.76/4.00',
+    gpa: '3.63/4.00',
     graduationDate: 'December 2025',
     details: [
       'Concentration in Biomedical Devices and Bioimaging',
