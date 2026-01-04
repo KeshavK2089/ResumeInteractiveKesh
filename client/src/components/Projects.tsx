@@ -69,7 +69,7 @@ const projects: Project[] = [
     location: 'Personal Projects',
     period: '2025',
     description: [
-      'Built Prep Flow, CocoMed, and MedScanAI - interactive applications solving real-world problems',
+      'Built Prep Flow and MedLearn - interactive applications solving real-world problems',
       'Received feedback from real users to optimize workflow and UI',
       'Deployed modern React-based web experiences and native iOS applications'
     ],
@@ -89,7 +89,7 @@ const projects: Project[] = [
         href: 'https://www.cocomed.app/'
       },
       {
-        label: 'Download MedScanAI',
+        label: 'Download MedLearn',
         href: 'https://apps.apple.com/us/app/medscanai/id6755940417'
       }
     ]
