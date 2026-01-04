@@ -85,7 +85,7 @@ const projects: Project[] = [
     link: 'https://interviewaid.xyz/',
     additionalLinks: [
       {
-        label: 'Try CocoMed',
+        label: 'Try MedLearn Online',
         href: 'https://www.cocomed.app/'
       },
       {
