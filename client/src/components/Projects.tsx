@@ -68,7 +68,7 @@ const projects: Project[] = [
     location: 'Personal Projects',
     period: '2025',
     description: [
-      'MedScanAI — AI-powered medication scanner that identifies pills and provides drug information instantly',
+      'Medlearn — AI-powered medication educator that identifies pills and provides drug information instantly',
       'AudioPure — Advanced audio processing app for noise reduction and sound enhancement',
       'Designed intuitive user experiences with a focus on accessibility and real-world utility'
     ],
@@ -83,7 +83,7 @@ const projects: Project[] = [
     icon: Smartphone,
     appStoreLinks: [
       {
-        label: 'Download MedScanAI',
+        label: 'Download Medlearn',
         href: 'https://apps.apple.com/us/app/medscanai/id6755940417'
       },
       {
