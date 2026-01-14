@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Microscope, Wrench, Clock } from 'lucide-react';
+import { ExternalLink, Microscope, Wrench, Smartphone } from 'lucide-react';
 
 interface Project {
   id: string;
@@ -12,8 +12,7 @@ interface Project {
   description: string[];
   technologies: string[];
   icon: typeof Microscope;
-  link?: string;
-  additionalLinks?: {
+  appStoreLinks?: {
     label: string;
     href: string;
   }[];
@@ -63,34 +62,33 @@ const projects: Project[] = [
     icon: Wrench
   },
   {
-    id: 'side-projects',
-    title: 'Side Projects',
-    subtitle: 'Interactive Web & Mobile Applications',
+    id: 'ios-apps',
+    title: 'iOS Applications',
+    subtitle: 'Published on the App Store',
     location: 'Personal Projects',
     period: '2025',
     description: [
-      'Built Prep Flow and MedLearn - interactive applications solving real-world problems',
-      'Received feedback from real users to optimize workflow and UI',
-      'Deployed modern React-based web experiences and native iOS applications'
+      'MedScanAI — AI-powered medication scanner that identifies pills and provides drug information instantly',
+      'AudioPure — Advanced audio processing app for noise reduction and sound enhancement',
+      'Designed intuitive user experiences with a focus on accessibility and real-world utility'
     ],
     technologies: [
-      'React',
-      'TypeScript',
       'Swift',
-      'iOS Development',
-      'UX Design',
-      'GitHub Pages'
+      'SwiftUI',
+      'Core ML',
+      'AVFoundation',
+      'Vision Framework',
+      'App Store Connect'
     ],
-    icon: Clock,
-    link: 'https://interviewaid.xyz/',
-    additionalLinks: [
+    icon: Smartphone,
+    appStoreLinks: [
       {
-        label: 'Try MedLearn Online',
-        href: 'https://www.cocomed.app/'
+        label: 'Download MedScanAI',
+        href: 'https://apps.apple.com/us/app/medscanai/id6755940417'
       },
       {
-        label: 'Download MedLearn',
-        href: 'https://apps.apple.com/us/app/medscanai/id6755940417'
+        label: 'Download AudioPure',
+        href: 'https://apps.apple.com/us/app/audiopure/id6756751567'
       }
     ]
   }
@@ -187,26 +185,13 @@ export function Projects() {
                     </Button>
                   )}
 
-                  {/* Primary Link (Prep Flow) */}
-                  {project.link && (
-                    <Button
-                      variant="outline"
-                      className="w-full gap-2"
-                      onClick={() => window.open(project.link, '_blank')}
-                      data-testid={`button-view-project-${project.id}`}
-                    >
-                      <ExternalLink size={16} />
-                      Try Prep Flow
-                    </Button>
-                  )}
-
-                  {/* Additional links (CocoMed & MedScanAI) */}
-                  {project.additionalLinks?.map((link, i) => (
+                  {project.appStoreLinks?.map((link, i) => (
                     <Button
                       key={i}
                       variant="outline"
                       className="w-full gap-2"
                       onClick={() => window.open(link.href, '_blank')}
+                      data-testid={`button-appstore-${project.id}-${i}`}
                     >
                       <ExternalLink size={16} />
                       {link.label}
