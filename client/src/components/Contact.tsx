@@ -9,7 +9,7 @@ export function Contact() {
   const [emailCopied, setEmailCopied] = useState(false);
 
   const copyEmail = () => {
-    navigator.clipboard.writeText('kotteswaran.k@northeastern.edu');
+    navigator.clipboard.writeText('keshavkotteswaran@gmail.com');
     setEmailCopied(true);
     toast({
       title: 'Email Copied!',
@@ -46,11 +46,11 @@ export function Contact() {
                 </p>
                 <div className="flex items-center gap-2">
                   <a
-                    href="mailto:kotteswaran.k@northeastern.edu"
+                    href="mailto:keshavkotteswaran@gmail.com"
                     className="text-foreground hover:text-primary transition-colors text-lg"
                     data-testid="link-email"
                   >
-                    kotteswaran.k@northeastern.edu
+                    keshavkotteswaran@gmail.com
                   </a>
                   <Button
                     size="icon"
