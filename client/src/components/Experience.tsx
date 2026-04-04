@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/card';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import abbottLogo from '@assets/stock_images/abbott_cardiac_rhythm_mgmt.jpg';
 import epicLogo from '@assets/stock_images/epic_systems_ehr_hos_e9dba9e1.jpg';
 import insuletLogo from '@assets/stock_images/omnipod_insulin_pump_a5291a49.jpg';
 import acordaLogo from '@assets/stock_images/acorda_therapeutics__252e6aef.jpg';
@@ -21,6 +22,25 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
+    id: 'abbott',
+    company: 'Abbott',
+    role: 'Project Manager',
+    location: 'Sylmar, CA',
+    period: 'March 2026 - Present',
+    logo: abbottLogo,
+    highlights: [
+      'Managing medical device programs within the Cardiac Rhythm Management division, driving pacemaker and implantable device development',
+      'Led rollout of a device hardware update across 5 regions, parsing 70,000+ serial numbers and coordinating 11,000 device reps to ensure EMI compliance',
+      'Operating within Abbott\'s quality system, ensuring deliverables comply with FDA design controls, CAPA processes, and DHF documentation'
+    ],
+    allResponsibilities: [
+      'Managing medical device programs within the Cardiac Rhythm Management division, developing project plans, schedules, and resource estimates using MS Project to drive pacemaker and implantable device development',
+      'Led rollout of a device hardware update across 5 regions, parsing 70,000+ serial numbers and coordinating 11,000 device reps to ensure EMI compliance of Merlin 2 Interrogators',
+      'Operating within Abbott\'s quality system environment, ensuring all project deliverables comply with FDA design controls, CAPA processes, and Design History File (DHF) documentation requirements',
+      'Utilizing Power BI, Power Apps, and Excel to analyze representative data and track program metrics for the Merlin 2 program'
+    ]
+  },
+  {
     id: 'epic',
     company: 'Epic Systems',
     role: 'Project Manager',
@@ -28,17 +48,16 @@ const experiences: ExperienceItem[] = [
     period: 'September 2024 - August 2025',
     logo: epicLogo,
     highlights: [
-      'Managed 18 IT analysts across four teams to support Beebe Healthcare\'s EHR implementation',
-      'Guided 26 clinical leaders through 300+ workflow optimization decisions',
-      'Collaborated with 5 cross-functional teams to reduce average surgery time by 3 minutes'
+      'Coordinated cross-functional teams of 18 IT analysts on a $2M EHR implementation, delivering all milestones on schedule',
+      'Designed statistical analysis framework for perioperative workflows, increasing First Case On-Time Starts by 15%',
+      'Led root cause analysis investigations on 9 device interface failures, validating corrective actions through regression testing'
     ],
     allResponsibilities: [
-      'Managed 18 IT analysts across four teams to support Beebe Healthcare\'s EHR implementation',
-      'Guided 26 clinical leaders through 300+ workflow optimization decisions for surgery, anesthesia, and perfusion',
-      'Demoed client-facing product presentations to clinical stakeholders, facilitating consensus on key design decisions',
-      'Co-led a committee of 30+ anesthesiologists to finalize product optimization opportunities through market analysis',
-      'Collaborated with 5 cross-functional teams to finalize hybrid workflows, reducing average surgery time by 3 minutes',
-      'Utilized agile and waterfall methodologies to manage project and sprint timelines'
+      'Coordinated cross-functional teams of 18 IT analysts on a $2M EHR implementation using Agile and Waterfall methodologies, delivering all project milestones on schedule while managing competing priorities in MS Project',
+      'Designed statistical analysis framework to identify integration bottlenecks in perioperative workflows, implementing process improvements that increased First Case On-Time Starts by 15%',
+      'Led root cause analysis (5-Why, Fishbone) investigations on 9 device interface failures, collaborating with vendors to resolve data transmission errors and validating corrective actions through regression testing protocols',
+      'Maintained Systems Integration Testing documentation per FDA 21 CFR Part 11 requirements in SharePoint, supporting 3 regulatory audits with complete traceability records',
+      'Created Visio workflow diagrams and technical documentation to support client presentations, facilitating stakeholder alignment across 26 clinical leaders and 3 workgroups'
     ]
   },
   {
@@ -49,15 +68,14 @@ const experiences: ExperienceItem[] = [
     period: 'July 2023 - December 2023',
     logo: insuletLogo,
     highlights: [
-      'Executed QA tests for 50+ Omnipod performance specifications, ensuring FDA compliance',
-      'Led end-to-end systems integration testing for device-to-cloud protocols',
-      'Directed capacity optimization project streamlining 70+ test specifications'
+      'Executed Design Verification testing for 50+ Omnipod 5 system requirements, maintaining traceability to ISO 14971 and FDA 21 CFR Part 820.30',
+      'Led end-to-end Systems Integration Testing for device-to-cloud telemetry protocols, validating data integrity within regulated QMS',
+      'Investigated product anomalies through root cause analysis and FMEA, presenting corrective action recommendations to engineering leadership'
     ],
     allResponsibilities: [
-      'Executed QA tests for 50+ Omnipod performance specifications, ensuring product reliability and FDA compliance',
-      'Led end-to-end systems integration testing for device-to-cloud and cloud-to-cloud data transfer protocols',
-      'Directed a capacity optimization project that streamlined resource usage across 70+ test specifications',
-      'Investigated Omnipod test anomalies via root cause analysis and implemented corrective design changes'
+      'Executed Design Verification testing for 50+ system requirements of the Omnipod 5 insulin delivery device, maintaining traceability matrices in electronic QMS linking test cases to ISO 14971 risk controls, IEC 62304 software standards, and FDA 21 CFR Part 820.30 Design Control requirements',
+      'Led end-to-end Systems Integration Testing for device-to-cloud telemetry protocols, validating data integrity of insulin delivery logs transmitted between PDM and secure cloud backend within regulated QMS environment',
+      'Investigated product anomalies through structured root cause analysis and FMEA methodologies, documenting findings and presenting corrective action recommendations to engineering leadership'
     ]
   },
   {
@@ -68,15 +86,15 @@ const experiences: ExperienceItem[] = [
     period: 'July 2022 - December 2022',
     logo: acordaLogo,
     highlights: [
-      'Conducted market validation studies on powder stability for pharmaceutical launch',
-      'Assessed biocompatibility of spray-dried drug formulations',
-      'Managed analytical testing using UPLC/HPLC for drug formulation characterization'
+      'Validated 5 drug formulations using HPLC and UPLC analytical methods, executing 85+ sample runs per ICH Q2(R1) standards',
+      'Executed biocompatibility testing of spray-dried formulations using ACI-8, validating particle size distributions met target specifications',
+      'Maintained GMP/GDP compliance across 60+ laboratory test runs, documenting results per ISO 10993 standards'
     ],
     allResponsibilities: [
-      'Conducted market validation studies on powder stability and compatibility for a pharmaceutical launch',
-      'Assessed biocompatibility of spray-dried drug formulations for a MannKind–Acorda collaboration',
-      'Followed GMP and GDP guidelines in lab setting for all test runs including ACI-8 analysis',
-      'Managed analytical testing of a patented drug portfolio using UPLC/HPLC, characterizing formulation properties to guide development decisions'
+      'Validated 5 drug formulations using HPLC and UPLC analytical methods, executing 85+ sample runs per ICH Q2(R1) standards',
+      'Executed biocompatibility testing of spray-dried drug formulations using Andersen Cascade Impaction (ACI-8), validating particle size distributions met target MMAD specifications of 1–5 µm with under 5% standard deviation',
+      'Maintained GMP/GDP compliance across 60+ laboratory test runs, documenting results in accordance with ISO 10993 biocompatibility standards',
+      'Compiled particle dispersion data in Excel and authored presentation reports for cross-functional stakeholders'
     ]
   },
   {
@@ -87,9 +105,9 @@ const experiences: ExperienceItem[] = [
     period: 'June 2020 - September 2020',
     logo: cscLogo,
     highlights: [
-      'Created clean reference database of international ticker suffixes',
-      'Wrote AWS Lambda job for CSV validation and ingestion to S3',
-      'Mapped database service connections in AWS architecture'
+      'Created clean reference database of international ticker suffixes, standardizing symbol formats across markets',
+      'Wrote AWS Lambda job for CSV validation and ingestion to S3 for automated lookup',
+      'Mapped database service connections in AWS architecture (Lambda → S3 → CloudWatch)'
     ],
     allResponsibilities: [
       'Created a clean reference database of international ticker suffixes (e.g., .US, .IN, .CA, .HK), standardized symbol formats, and wrote a small AWS Lambda job to validate/ingest CSVs to storage (S3) for easy lookup',
